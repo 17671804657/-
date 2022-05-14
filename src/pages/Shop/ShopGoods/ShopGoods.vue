@@ -52,7 +52,7 @@
                     <span class="old" v-if="food.oldPrice">￥{{food.oldPrice}}</span>
                   </div>
                   <div class="cartcontrol-wrapper">
-                    <!--                    <CartControl :food="food" ></CartControl>-->
+                    <CartControl :food="food" ></CartControl>
                   </div>
                 </div>
               </li>
@@ -60,10 +60,10 @@
           </li>
         </ul>
       </div>
-      <!--      <ShopCart></ShopCart>-->
+<!--            <ShopCart></ShopCart>-->
     </div>
     <!--    <transition name="fade">-->
-    <!--      <Food :food="food" ref="food"></Food>-->
+          <Food :food="food" ref="food"></Food>
     <!--    </transition>-->
   </div>
 </template>
@@ -72,8 +72,11 @@
 <script>
 import BScroll from 'better-scroll'
 import {mapState} from "vuex";
+import CartControl from "@/components/CartControl/CartControl";
+import Food from "@/components/Food/Food";
 
 export default {
+
   data() {
     return{
       scrollY:0,//右侧滑动的Y轴坐标（滑动过程时实时变化)
@@ -161,9 +164,13 @@ export default {
     showFood (food) {
       // 设置food
       this.food = food
-      // 显示food组件
+      // // 显示food组件
       this.$refs.food.toggleShow()
     }
+  },
+  components:{
+    CartControl,
+    Food
   }
 }
 </script>

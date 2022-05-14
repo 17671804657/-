@@ -1,8 +1,11 @@
 // 通过mutation间接更新state的多个方法的对象
 import {reqAddress, reqCategorys, reqShops, reqUserInfo ,reqLogout,reqShopGoods, reqShopInfo, reqShopRatings} from '../api'
 
-import {RECEIVE_ADDRESS, RECEIVE_CATEGORYS, RECEIVE_SHOPS,RECEIVE_USER_INFO,RESET_USER_INFO,
-    RECEIVE_GOODS, RECEIVE_RATINGS, RECEIVE_INFO } from './mutation-types'
+import {
+    RECEIVE_ADDRESS, RECEIVE_CATEGORYS, RECEIVE_SHOPS, RECEIVE_USER_INFO, RESET_USER_INFO,
+    RECEIVE_GOODS, RECEIVE_RATINGS, RECEIVE_INFO,
+     DECREMENT_FOOD_COUNT, INCREMENT_FOOD_COUNT
+} from './mutation-types'
 
 export default {
     // 异步获取地址
@@ -83,6 +86,15 @@ export default {
             callback && callback()
         }
     },
+
+    //同步更新food中的count值
+    updateFoodCount({commit},{isAdd, food}) {
+        if(isAdd){
+            commit(INCREMENT_FOOD_COUNT,{food})
+        }else{
+            commit(DECREMENT_FOOD_COUNT,{food})
+        }
+    }
 
 
 }
