@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="goods">
+    <div class="goods" >
       <div class="menu-wrapper" ref="men">
         <ul>
           <!--current-->
@@ -81,6 +81,7 @@ export default {
     return{
       scrollY:0,//右侧滑动的Y轴坐标（滑动过程时实时变化)
       tops:[],//所有右侧分类li的top组成的数组（列表第一次显示后就不再变化）
+      food:{},//需要显示的food
     }
   },
   computed:{
@@ -164,7 +165,7 @@ export default {
     showFood (food) {
       // 设置food
       this.food = food
-      // // 显示food组件
+      // 显示food组件(在父组件调用子组件对象的方法)
       this.$refs.food.toggleShow()
     }
   },

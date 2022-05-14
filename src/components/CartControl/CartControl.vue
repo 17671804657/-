@@ -3,7 +3,7 @@
     <transition name="move">
       <div class="iconfont icon-remove_circle_outline"
            v-if="food.count"
-           @click="updateFoodCount(false)"
+           @click.stop="updateFoodCount(false)"
       >
       </div>
     </transition>
@@ -13,7 +13,7 @@
       {{ food.count}}
     </div>
     <div class="iconfont icon-add_circle"
-         @click="updateFoodCount(true)">
+         @click.stop="updateFoodCount(true)">
     </div>
   </div>
 
