@@ -60,11 +60,11 @@
           </li>
         </ul>
       </div>
-<!--            <ShopCart></ShopCart>-->
+      <ShopCart></ShopCart>
     </div>
-    <!--    <transition name="fade">-->
+        <transition name="fade">
           <Food :food="food" ref="food"></Food>
-    <!--    </transition>-->
+        </transition>
   </div>
 </template>
 
@@ -73,6 +73,7 @@
 import BScroll from 'better-scroll'
 import {mapState} from "vuex";
 import CartControl from "@/components/CartControl/CartControl";
+import ShopCart from "@/components/ShopCart/ShopCart";
 import Food from "@/components/Food/Food";
 
 export default {
@@ -106,6 +107,7 @@ export default {
 
         this._initScroll()
         this._initTops()
+        // this.scroll.refresh()
       })
     })
   },
@@ -171,14 +173,14 @@ export default {
   },
   components:{
     CartControl,
-    Food
+    Food,
+    ShopCart
   }
 }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
 @import "../../../common/stylus/mixins.styl"
-
 
 .goods
   display: flex

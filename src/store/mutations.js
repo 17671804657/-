@@ -5,9 +5,8 @@ import {
     RECEIVE_ADDRESS,
     RECEIVE_CATEGORYS, RECEIVE_GOODS, RECEIVE_INFO, RECEIVE_RATINGS,
     RECEIVE_SHOPS, RECEIVE_USER_INFO, RESET_USER_INFO,
-    DECREMENT_FOOD_COUNT
+    DECREMENT_FOOD_COUNT,CLEAR_CART,RECEIVE_SEARCH_SHOPS
 } from './mutation-types'
-import {county} from "mockjs/src/mock/random/address";
 
 export default {
     [RECEIVE_ADDRESS](state, {address}) {
@@ -44,7 +43,7 @@ export default {
             * 属性值
             * */
             Vue.set(food,'count',1) //让新增的属性也有数据绑定
-            state.shopCart.push(food) // 添加到购物车
+            state.cartFoods.push(food) // 添加到购物车
         }else{
             food.count++
         }
@@ -53,11 +52,21 @@ export default {
         if(food.count){//只有有值才去减
             food.count--
             if(food.count===0) {// 如果数量减为0, 从购物车中移除
-                state.shopCart.splice(state.shopCart.indexOf(food), 1)
+                state.cartFoods.splice(state.cartFoods.indexOf(food), 1)
             }
 
         }
     },
+    [CLEAR_CART](state){
+
+        //清除food中的count
+        state.cartFoods.forEach(food=>food.count = 0)
+        //移除购物车中所有购物项
+        state.cartFoods = []
+    },
+    [RECEIVE_SEARCH_SHOPS](state,{searchShops}){
+        state.searchShops=searchShops
+    }
 
 
 }

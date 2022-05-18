@@ -5,8 +5,7 @@ import {Button} from 'mint-ui'
 import App from './App'
 import router from "@/router"
 import store from './store'
-
-import './mock/mockServe' //加载mockServe即可
+import './mock/mockServe' //加载mockServe即可\
 
 
 // 注册全局组件标签

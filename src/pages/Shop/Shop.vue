@@ -12,9 +12,7 @@
         <router-link to="/shop/info" replace>商家</router-link>
       </div>
     </div>
-<!--    让不展示的路由组件保持挂载，不被销毁-->
     <keep-alive>
-<!--      保持挂载子路由-->
       <router-view/>
     </keep-alive>
   </div>

@@ -1,10 +1,11 @@
 // 通过mutation间接更新state的多个方法的对象
-import {reqAddress, reqCategorys, reqShops, reqUserInfo ,reqLogout,reqShopGoods, reqShopInfo, reqShopRatings} from '../api'
+import {reqAddress, reqCategorys, reqShops, reqUserInfo ,reqLogout,reqShopGoods, reqShopInfo, reqShopRatings,reqSearchGoods} from '../api'
 
 import {
     RECEIVE_ADDRESS, RECEIVE_CATEGORYS, RECEIVE_SHOPS, RECEIVE_USER_INFO, RESET_USER_INFO,
     RECEIVE_GOODS, RECEIVE_RATINGS, RECEIVE_INFO,
-     DECREMENT_FOOD_COUNT, INCREMENT_FOOD_COUNT
+     DECREMENT_FOOD_COUNT, INCREMENT_FOOD_COUNT,
+    CLEAR_CART,RECEIVE_SEARCH_SHOPS
 } from './mutation-types'
 
 export default {
@@ -87,14 +88,30 @@ export default {
         }
     },
 
-    //同步更新food中的count值
-    updateFoodCount({commit},{isAdd, food}) {
-        if(isAdd){
-            commit(INCREMENT_FOOD_COUNT,{food})
-        }else{
-            commit(DECREMENT_FOOD_COUNT,{food})
+    // 同步更新food中的count值
+    updateFoodCount({commit}, {isAdd, food}) {
+        if (isAdd) {
+            commit(INCREMENT_FOOD_COUNT, {food})
+        } else {
+            commit(DECREMENT_FOOD_COUNT, {food})
         }
-    }
+    },
+
+    //同步清空购物车
+    clearCart({commit}) {
+        commit(CLEAR_CART)
+    },
+
+    // 异步获取商家列表
+    async searchShops({commit,state}, keyword) {
+        const geohash = state.latitude +',' + state.longitude
+        const result = await reqSearchGoods(geohash,keyword)
+        if (result.code === 0) {
+            const searchShops = result.data
+            commit(RECEIVE_SEARCH_SHOPS, {searchShops})
+
+        }
+    },
 
 
 }

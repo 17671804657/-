@@ -72,7 +72,7 @@ export default new VueRouter({
                     component: ShopGoods,
                 },
                 {
-                    path: '/shop/rating',
+                    path: '/shop/ratings',
                     component: ShopRating,
                 },
                 {
